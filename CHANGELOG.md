@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.0 (2024-09-05)
+
+### Feature
+
+* Added new task to open a website pannel ([`88137ce`](https://github.com/Bonne8008/edwh-bonnes-tasks-plugin/commit/88137cef3ca2c9b03b21c87467326218f83e27c5))
+
 ## v0.2.0 (2024-09-05)
 
 ### Feature
