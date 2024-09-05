@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.2 (2024-09-05)
+
+### Fix
+
+* Removed some sh!t code again ([`a0591e6`](https://github.com/Bonne8008/edwh-bonnes-tasks-plugin/commit/a0591e635f9b4c0f83c9de928f5c1a899d4f9280))
+
 ## v0.3.1 (2024-09-05)
 
 ### Fix
