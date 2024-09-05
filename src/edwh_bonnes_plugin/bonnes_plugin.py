@@ -10,11 +10,6 @@ def yell(c):
 
 
 @task()
-def image(c):
-    for x in range(3):
-        open_image('assets/300px-Pug_600.jpg', x=random.randint(200, 1400), y=random.randint(0, 1200))
-
-@task()
 def open(c, a_way):
     match a_way:
         case 'base':
