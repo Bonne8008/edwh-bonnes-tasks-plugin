@@ -1,8 +1,6 @@
 from time import sleep
 
 from invoke import task
-from PIL import Image, ImageTk
-import tkinter as tk
 import random
 import webbrowser
 
@@ -10,29 +8,6 @@ import webbrowser
 def yell(c):
     print("AAAAAAAaaaafdffAHHH")
 
-
-def open_image(file_path, x, y):
-    # Maak een Tkinter-venster
-    root = tk.Tk()
-
-    # Open de afbeelding met Pillow
-    img = Image.open(file_path)
-
-    # Converteer de Pillow-afbeelding naar een Tkinter-compatibel formaat
-    tk_img = ImageTk.PhotoImage(img)
-
-    # Maak een label om de afbeelding weer te geven
-    label = tk.Label(root, image=tk_img)
-    label.pack()
-
-    # Stel de venstergrootte in op basis van de afbeeldingsgrootte
-    root.geometry(f"{img.width}x{img.height}+{x}+{y}")
-
-    # Houd een referentie naar de afbeelding
-    root.image = tk_img
-
-    # Start de Tkinter-loop
-    root.mainloop()
 
 @task()
 def image(c):
