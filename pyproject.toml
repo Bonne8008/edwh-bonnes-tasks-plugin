@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "edwh-bonnes-plugin"
 dynamic = ["version"]
-description = 'bonnes project with a plugin to be discovered from the edwh package'
+description = 'The greatest project to be created from the edwh package.'
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
@@ -13,6 +13,7 @@ keywords = ["edwh"]
 authors = [
     { name = "Remco Boerma", email = "remco.b@educationwarehouse.nl" },
     { name = "Robin van der Noord", email = "robin.vdn@educationwarehouse.nl" },
+    { name = "Bonne Lueks", email = "bonne.l@educationwarehouse.nl" },
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
