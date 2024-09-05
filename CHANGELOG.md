@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.1 (2024-09-05)
+
+### Fix
+
+* Removed some sh!t code ([`e443aa0`](https://github.com/Bonne8008/edwh-bonnes-tasks-plugin/commit/e443aa0428fcb081d3717fce821321b6c11f9e91))
+
 ## v0.3.0 (2024-09-05)
 
 ### Feature
