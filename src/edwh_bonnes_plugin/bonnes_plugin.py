@@ -16,10 +16,16 @@ def open(c, a_way):
             webbrowser.open_new('https://educationwarehouse.org/nextcloud/apps/spreed/')
             webbrowser.open('https://realpython.com/python-virtual-environments-a-primer/#how-can-you-work-with-a-python-virtual-environment')
             webbrowser.open('https://www.perplexity.ai/')
+            webbrowser.open('https://github.com/educationwarehouse')
+            webbrowser.open('https://taiga.edwh.nl/project/ewstudents/backlog')
         case 'talk':
             link = 'https://educationwarehouse.org/nextcloud/apps/spreed/'
         case 'pp':
             link = 'https://www.perplexity.ai/'
+        case 'git':
+            link = 'https://github.com/educationwarehouse'
+        case 'taiga':
+            link = 'https://taiga.edwh.nl/project/ewstudents'
         case _:
             link = 'https://www.' + a_way + '.com/'
     webbrowser.open(link)
