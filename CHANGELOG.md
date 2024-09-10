@@ -2,6 +2,13 @@
 
 <!--next-version-placeholder-->
 
+## v0.4.0 (2024-09-10)
+
+### Feature
+
+* Completely changed how the open task is coded, should be easier to add new links. ([`d4dd9fd`](https://github.com/Bonne8008/edwh-bonnes-tasks-plugin/commit/d4dd9fd9f087e29523f3f31f60708c3d4de97282))
+* Addd a taiga case and updated the else case ([`9319cc1`](https://github.com/Bonne8008/edwh-bonnes-tasks-plugin/commit/9319cc15da94f61ee2f70cc7c29421e947660433))
+
 ## v0.3.2 (2024-09-05)
 
 ### Fix
