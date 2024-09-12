@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.5.1 (2024-09-12)
+
+### Fix
+
+* Added a --help command :) ([`22b72e9`](https://github.com/Bonne8008/edwh-bonnes-tasks-plugin/commit/22b72e9c84518f2edf201cdbd9f3533d390e49a8))
+
 ## v0.5.0 (2024-09-12)
 
 ### Feature
