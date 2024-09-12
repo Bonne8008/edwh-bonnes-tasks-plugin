@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.5.0 (2024-09-12)
+
+### Feature
+
+* Completely changed again!! ([`0e13a9b`](https://github.com/Bonne8008/edwh-bonnes-tasks-plugin/commit/0e13a9be8d2539810e73fabce7023b21b3e731c2))
+
 ## v0.4.0 (2024-09-10)
 
 ### Feature
