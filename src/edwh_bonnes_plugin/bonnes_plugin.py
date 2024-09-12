@@ -20,6 +20,8 @@ def open(c, link):
     if link == 'all':
         for x in list:
             webbrowser.open(list[x])
+    elif link == '--help':
+        print(list)
     else:
         try:
             webbrowser.open(list[link])
