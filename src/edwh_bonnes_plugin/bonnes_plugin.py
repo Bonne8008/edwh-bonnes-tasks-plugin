@@ -17,7 +17,7 @@ def pathcheck(c):
             pathed.write_text('{}')
     true_dates = jsons_path/'dates.json'
     if not true_dates.is_file():
-        true_dates.write_text('{"start_time": "", "end_time": ""}')
+        true_dates.write_text('{"start": "", "end": ""}')
 
 
 
