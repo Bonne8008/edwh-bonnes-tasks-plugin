@@ -2,6 +2,16 @@
 
 <!--next-version-placeholder-->
 
+## v0.6.0 (2024-09-17)
+
+### Feature
+
+* Added json compatibility and added a new task to show how far you at at stage :) ([`7ef90ae`](https://github.com/Bonne8008/edwh-bonnes-tasks-plugin/commit/7ef90ae844d7c0601c974326d55bfe45eb4f50bd))
+
+### Fix
+
+* Added tasknames to showtasks ([`7689275`](https://github.com/Bonne8008/edwh-bonnes-tasks-plugin/commit/7689275603df51376b04be07dea2e215cdf7d0fd))
+
 ## v0.5.1 (2024-09-12)
 
 ### Fix
