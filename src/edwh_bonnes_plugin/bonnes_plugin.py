@@ -124,14 +124,14 @@ def stagetime(c):
     print("Nog " + str(len(tasks)-done_tasks) + " tak(en) te doen!")
 
 @task(pre=[pathcheck])
-def changedate(c, date_name, new_time):
+def changedate(c, date_name = '', new_time = ''):
     with open('jsons/dates.json', 'r') as infile:
         dates = json.load(infile)
     if date_name not in dates:
         print('Geef aan of je start_time of end_time wilt verranderen')
         return
     dates[date_name] = new_time
-    with open('jsons/dates.json', 'r') as outfile:
+    with open('jsons/dates.json', 'w') as outfile:
         json.dump(dates, outfile)
     print(str(date_name) + ' verranderd, er is geen check of het een ok datum is dus als die nu kapot is is dat jouw schuld :)')
 
