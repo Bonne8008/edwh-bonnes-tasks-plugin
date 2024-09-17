@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.6.2 (2024-09-17)
+
+### Fix
+
+* Import kinker location changed inside function 2 ([`c639967`](https://github.com/Bonne8008/edwh-bonnes-tasks-plugin/commit/c63996709972cc9f4e943943078d766fe8fc5488))
+
 ## v0.6.1 (2024-09-17)
 
 ### Fix
