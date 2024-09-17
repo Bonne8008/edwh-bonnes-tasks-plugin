@@ -2,6 +2,14 @@
 
 <!--next-version-placeholder-->
 
+## v0.6.1 (2024-09-17)
+
+### Fix
+
+* Import kinker location changed inside function ([`3ef0780`](https://github.com/Bonne8008/edwh-bonnes-tasks-plugin/commit/3ef07801c4230f6168f5a3a97c82092015ac2ee5))
+* Added pillow talk ([`9941adf`](https://github.com/Bonne8008/edwh-bonnes-tasks-plugin/commit/9941adf048b07ea0ede11528a4771e3dddd9eb1c))
+* Added kinker ([`476e099`](https://github.com/Bonne8008/edwh-bonnes-tasks-plugin/commit/476e09955489a8ee2bd9c2e7aba501b8a873c3b7))
+
 ## v0.6.0 (2024-09-17)
 
 ### Feature
