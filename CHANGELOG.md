@@ -2,6 +2,13 @@
 
 <!--next-version-placeholder-->
 
+## v0.6.3 (2024-09-17)
+
+### Fix
+
+* IT WORKS 5 ([`026e846`](https://github.com/Bonne8008/edwh-bonnes-tasks-plugin/commit/026e846bafc4153c5459471b23e509ee0cb4dc3a))
+* IT WORKS ([`a8cac26`](https://github.com/Bonne8008/edwh-bonnes-tasks-plugin/commit/a8cac26dafd623f34b32a2e4bf4f8bd5b9bff4ea))
+
 ## v0.6.2 (2024-09-17)
 
 ### Fix
