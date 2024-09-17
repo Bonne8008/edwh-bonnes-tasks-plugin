@@ -1,6 +1,5 @@
 from random import randint
 import datetime
-from PIL import Image, ImageTk
 from invoke import task
 import webbrowser
 import json
@@ -24,6 +23,7 @@ def pathcheck(c):
 
 def ora(delay):
     import tkinter as tk
+    from PIL import Image, ImageTk
     # Create the main window
     root = tk.Tk()
     root.title("Image Display")
