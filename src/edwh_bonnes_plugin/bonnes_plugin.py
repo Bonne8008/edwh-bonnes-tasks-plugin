@@ -174,10 +174,12 @@ def showtasks(c):
 
 @task(pre=[pathcheck])
 def finishtask(c):
-    print('Welke task wil je afchecken?')
-    taskname = input()
     with open('jsons/tasks.json', 'r') as infile:
         tasks = json.load(infile)
+    for x in tasks:
+        print(x)
+    print('Welke task wil je afchecken?')
+    taskname = input()
 
     if taskname not in tasks:
         print(str(taskname) + ' is niet gevonden.')
