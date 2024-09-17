@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.6.6 (2024-09-17)
+
+### Fix
+
+* Shows all tasks when wanting to finish them ([`1b3c0d9`](https://github.com/Bonne8008/edwh-bonnes-tasks-plugin/commit/1b3c0d908b790807b11e79361ed0d1df2e4a7e44))
+
 ## v0.6.5 (2024-09-17)
 
 ### Fix
