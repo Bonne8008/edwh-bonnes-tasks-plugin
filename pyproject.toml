@@ -24,7 +24,10 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: CPython",
     "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = ['edwh']
+dependencies = [
+    "edwh",
+    "pillow",
+]
 
 [project.optional-dependencies]
 dev = [
@@ -61,8 +64,6 @@ parser_angular_patch_types = "fix,perf,refactor,build,chore,patch"
 dependencies = [
     "coverage[toml]>=6.5",
     "pytest",
-    "tkinter",
-    "pillow",
 ]
 [tool.hatch.envs.default.scripts]
 test = "pytest {args:tests}"

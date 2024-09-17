@@ -1,5 +1,4 @@
 from random import randint
-import tkinter as tk
 import datetime
 from PIL import Image, ImageTk
 from invoke import task
@@ -24,6 +23,7 @@ def pathcheck(c):
 
 
 def ora(delay):
+    import tkinter as tk
     # Create the main window
     root = tk.Tk()
     root.title("Image Display")
