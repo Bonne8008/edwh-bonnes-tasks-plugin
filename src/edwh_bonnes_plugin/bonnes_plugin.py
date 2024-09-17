@@ -79,11 +79,11 @@ def stagetime(c):
 
 
     if now < start_time:
-      print("WITCH, YOU'RE A WITCH A DIRTY TIME TRAVELING WITCH!!!!!")
-      return
+        print("WITCH, YOU'RE A WITCH A DIRTY TIME TRAVELING WITCH!!!!!")
+        return
     elif now >= end_time:
-      print("You made it though the internship alive, yippee :)")
-      return
+        print("You made it though the internship alive, yippee :)")
+        return
 
 
     total_duration = end_time - start_time
@@ -104,6 +104,14 @@ def stagetime(c):
             progresslists[0][x] = '#'
             i = i + (progresslists_length / len(progresslists[0]))
 
+    print("Dagen:")
+    print(*progresslists[0], f" {time_percentage:.2f}%", sep='')
+    print("Nog " + str(future_time.days) + " dagen te gaan!")
+
+    if not tasks:
+        print('Je hebt 0 taken klaar staan :)')
+        return
+
     done_tasks = 0
     for x in tasks:
         if tasks[x]['done']:
@@ -116,29 +124,34 @@ def stagetime(c):
             progresslists[1][x] = '#'
             j = j + (progresslists_length / len(progresslists[0]))
 
-    print("Dagen:")
-    print(*progresslists[0], f" {time_percentage:.2f}%", sep='')
-    print("Nog " + str(future_time.days) + " dagen te gaan!")
     print("Taken:")
     print(*progresslists[1], f" {task_percentage:.2f}%", sep='')
     print("Nog " + str(len(tasks)-done_tasks) + " tak(en) te doen!")
 
 @task(pre=[pathcheck])
-def changedate(c, date_name = '', new_time = ''):
+def changedate(c):
     with open('jsons/dates.json', 'r') as infile:
         dates = json.load(infile)
-    if date_name not in dates:
-        print('ERROR, gebruik als voorbeeld: --date-name=start/end --new-time=2024-09-02-11')
+    print('Wil je de start of einddatum editen? (start of end)')
+    name = input()
+    if name not in dates:
+        print('DAT IS GEEN start OF end GODVERDOMME')
         return
-    dates[date_name] = new_time
+    print('Ok, geef nu je nieuwe datum aan. (voorbeeld: 2024-09-02-10)')
+    time = input()
+    dates[name] = time
     with open('jsons/dates.json', 'w') as outfile:
         json.dump(dates, outfile)
-    print(str(date_name) + ' verranderd, er is geen check of het een ok datum is dus als die nu kapot is is dat jouw schuld :)')
+    print(str(name) + ' verranderd, er is geen check of het een ok datum is dus als die nu kapot is is dat jouw schuld :)')
 
 @task(pre=[pathcheck])
-def addtask(c, taskname, task_info):
+def addtask(c):
+    print('Hoe zal het nieuwe taak heten?')
+    taskname = input()
+    print('geef een beschrijving van de taak:')
+    task_info = input()
     new_task = {
-        taskname: {"info:": task_info, "done": False},
+        taskname: {"info": task_info, "done": False},
     }
     with open('jsons/tasks.json', 'r') as infile:
         old_tasks = json.load(infile)
@@ -160,7 +173,9 @@ def showtasks(c):
         print(x)
 
 @task(pre=[pathcheck])
-def finishtask(c, taskname):
+def finishtask(c):
+    print('Welke task wil je afchecken?')
+    taskname = input()
     with open('jsons/tasks.json', 'r') as infile:
         tasks = json.load(infile)
 
@@ -175,9 +190,13 @@ def finishtask(c, taskname):
     print(str(taskname) + ' is nu ' + str(tasks[taskname]['done']))
 
 @task(pre=[pathcheck])
-def deletetask(c, taskname):
+def removetask(c):
     with open('jsons/tasks.json', 'r') as infile:
         tasks = json.load(infile)
+    for x in tasks:
+        print(x)
+    print('Welke task wil je verwijderen?')
+    taskname = input()
     if taskname not in tasks:
         print('Naam niet gevonden :(')
         return
@@ -211,7 +230,11 @@ def openlink(c, link):
 
 
 @task(pre=[pathcheck])
-def addlink(c, linkname, link):
+def addlink(c):
+    print('Hoe zal de nieuwe link gaan heten?')
+    linkname = input()
+    print('vul nu de link in waar die je heen moet sturen')
+    link = input()
     new_link = {linkname: link,}
     with open('jsons/links.json', 'r') as infile:
         old_links = json.load(infile)
@@ -220,7 +243,9 @@ def addlink(c, linkname, link):
         json.dump(links, output)
 
 @task(pre=[pathcheck])
-def deletelink(c, linkname):
+def deletelink(c):
+    print('Welke link wil jij verwijderen?')
+    linkname = input()
     with open('jsons/links.json', 'r') as infile:
         links = json.load(infile)
     if linkname not in links:
