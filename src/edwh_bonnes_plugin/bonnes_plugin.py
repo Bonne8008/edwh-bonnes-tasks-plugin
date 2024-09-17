@@ -153,7 +153,7 @@ def showtasks(c):
         tasks = json.load(infile)
     for x in tasks:
         if not tasks[x]['done']:
-            undfinished_tasks.append(tasks[x]['info'])
+            undfinished_tasks.append(str(x) + ': ' + str(tasks[x]['info']))
     print('Aantal taken al gedaan: ' + str(len(tasks) - len(undfinished_tasks)))
     print('Taken nog te doen:')
     for x in undfinished_tasks:
