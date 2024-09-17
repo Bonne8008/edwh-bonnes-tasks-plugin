@@ -62,6 +62,7 @@ dependencies = [
     "coverage[toml]>=6.5",
     "pytest",
     "tkinter",
+    "pillow",
 ]
 [tool.hatch.envs.default.scripts]
 test = "pytest {args:tests}"
