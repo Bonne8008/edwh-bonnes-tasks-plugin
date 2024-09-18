@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.6.8 (2024-09-18)
+
+### Fix
+
+* Added check if you want to add a list or tasks when it already exists ([`d47507f`](https://github.com/Bonne8008/edwh-bonnes-tasks-plugin/commit/d47507f44a7437c47a28b1be92963b67cb791641))
+
 ## v0.6.7 (2024-09-18)
 
 ### Fix
