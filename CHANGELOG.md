@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.6.7 (2024-09-18)
+
+### Fix
+
+* Made the jsons folder hidden ([`79ef176`](https://github.com/Bonne8008/edwh-bonnes-tasks-plugin/commit/79ef176150280f0e59130683803e842becb321d5))
+
 ## v0.6.6 (2024-09-17)
 
 ### Fix
