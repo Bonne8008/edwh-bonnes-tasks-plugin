@@ -20,34 +20,37 @@ def pathcheck(c):
         true_dates.write_text('{"start": "", "end": ""}')
 
 
+def read_json(json_name):
+    with open(f'.jsons/{json_name}.json', 'r') as file:
+        output = json.load(file)
+        return output
+
+
+def write_json(json_name, infile):
+    with open(f'.jsons/{json_name}.json', 'w') as outfile:
+        json.dump(infile, outfile)
 
 def ora(delay):
     import tkinter as tk
     from PIL import Image, ImageTk
-    # Create the main window
     root = tk.Tk()
     root.title("Image Display")
     fists = []
 
-    # Load and resize the image
-    for x in range(3):
-        image = Image.open("assets/star_platinum_fist.png")
-        image = image.resize((300, 300))  # Adjust size as needed
-        photo = ImageTk.PhotoImage(image)
-        label = tk.Label(root, image=photo)
-        root.geometry(f"{image.width}x{image.height}+{randint(0, 2000)}+{randint(0, 2000)}")
-        fists.append(label)
+    # for x in range(1):
+    image = Image.open("assets/star_platinum_fist.png")
+    image = image.resize((300, 300))  # Adjust size as needed
+    photo = ImageTk.PhotoImage(image)
+    label = tk.Label(root, image=photo)
+    root.geometry(f"{image.width}x{image.height}+{randint(0, 2000)}+{randint(0, 2000)}")
+    fists.append(label)
 
     fists[0].pack()
     fists[0].after(delay, root.destroy)
     # time.sleep(2)
-    fists[1].pack()
-    fists[1].after(delay, root.destroy)
-
-
-    # Start the Tkinter event loop
+    # fists[1].pack()
+    # fists[1].after(delay, root.destroy)
     root.mainloop()
-    # Create a label to display the image
 
 
 
@@ -59,11 +62,9 @@ def starplatinum(c):
         print('ora')
         ora(20)
 
-
 @task(pre=[pathcheck])
 def stagetime(c):
-    with open('.jsons/dates.json', 'r') as file:
-        date_times = json.load(file)
+    date_times = read_json('dates')
     with open('.jsons/tasks.json', 'r') as file:
         tasks = json.load(file)
 
@@ -85,20 +86,18 @@ def stagetime(c):
         print("You made it though the internship alive, yippee :)")
         return
 
-
     total_duration = end_time - start_time
     elapsed_time = now - start_time
     future_time = end_time - now
     time_percentage = (elapsed_time / total_duration) * 100
-
     progresslists = [[],[]]
     progresslists_length = 100
 
     for y in range(progresslists_length):
         progresslists[0].append('-')
         progresslists[1].append('-')
-
     i = (progresslists_length / len(progresslists[0]))
+
     for x in range(len(progresslists[0])):
         if time_percentage >= i:
             progresslists[0][x] = '#'
@@ -107,17 +106,14 @@ def stagetime(c):
     print("Dagen:")
     print(*progresslists[0], f" {time_percentage:.2f}%", sep='')
     print("Nog " + str(future_time.days) + " dagen te gaan!")
-
     if not tasks:
         print('Je hebt 0 taken klaar staan :)')
         return
-
     done_tasks = 0
     for x in tasks:
         if tasks[x]['done']:
             done_tasks = done_tasks + 1
     task_percentage = (done_tasks / len(tasks))*100
-
     j = (progresslists_length / len(progresslists[1]))
     for x in range(len(progresslists[1])):
         if task_percentage >= j:
@@ -146,55 +142,53 @@ def changedate(c):
 
 @task(pre=[pathcheck])
 def addtask(c):
+    old_tasks = read_json('tasks')
     print('Hoe zal het nieuwe taak heten?')
     taskname = input()
+    if taskname in old_tasks:
+        print('Deze naam bestaat al')
+        return
     print('geef een beschrijving van de taak:')
     task_info = input()
-    new_task = {
-        taskname: {"info": task_info, "done": False},
-    }
-    with open('.jsons/tasks.json', 'r') as infile:
-        old_tasks = json.load(infile)
+    new_task = {taskname: {"info": task_info, "done": False},}
     tasks = old_tasks | new_task
-    with open('.jsons/tasks.json', 'w') as output:
-        json.dump(tasks, output)
+    write_json('tasks', tasks)
 
 @task(pre=[pathcheck])
 def showtasks(c):
-    undfinished_tasks = []
-    with open('.jsons/tasks.json', 'r') as infile:
-        tasks = json.load(infile)
+    tasks = read_json('tasks')
+    finished_tasks = []
+    unfinished_tasks = []
+    print('Aantal taken al gedaan:')
     for x in tasks:
-        if not tasks[x]['done']:
-            undfinished_tasks.append(str(x) + ': ' + str(tasks[x]['info']))
-    print('Aantal taken al gedaan: ' + str(len(tasks) - len(undfinished_tasks)))
-    print('Taken nog te doen:')
-    for x in undfinished_tasks:
+        if tasks[x]['done']:
+            finished_tasks.append((str(x) + ': ' + str(tasks[x]['info'])))
+        else:
+            unfinished_tasks.append((str(x) + ': ' + str(tasks[x]['info'])))
+    print(str(len(finished_tasks)) + ' gecomplete taken:')
+    for x in finished_tasks:
+        print(x)
+    print(str(len(unfinished_tasks)) + ' ongecomplete taken:')
+    for x in unfinished_tasks:
         print(x)
 
 @task(pre=[pathcheck])
 def finishtask(c):
-    with open('.jsons/tasks.json', 'r') as infile:
-        tasks = json.load(infile)
+    tasks = read_json('tasks')
     for x in tasks:
         print(x)
     print('Welke task wil je afchecken?')
     taskname = input()
-
     if taskname not in tasks:
         print(str(taskname) + ' is niet gevonden.')
         return
     tasks[taskname]['done'] = not tasks[taskname]['done']
-
-    with open('.jsons/tasks.json', 'w') as outfile:
-        json.dump(tasks, outfile)
-
+    write_json('tasks', tasks)
     print(str(taskname) + ' is nu ' + str(tasks[taskname]['done']))
 
 @task(pre=[pathcheck])
 def removetask(c):
-    with open('.jsons/tasks.json', 'r') as infile:
-        tasks = json.load(infile)
+    tasks = read_json('tasks')
     for x in tasks:
         print(x)
     print('Welke task wil je verwijderen?')
@@ -203,8 +197,7 @@ def removetask(c):
         print('Naam niet gevonden :(')
         return
     del tasks[taskname]
-    with open('.jsons/tasks.json', 'w') as outfile:
-        json.dump(tasks, outfile)
+    write_json('tasks', tasks)
     print(str(taskname) + " is verwijderd")
 
 @task(pre=[pathcheck])
@@ -213,10 +206,7 @@ def yell(c):
 
 @task(name='open', pre=[pathcheck])
 def openlink(c, link):
-
-    with open('.jsons/links.json', 'r') as infile:
-        list = json.load(infile)
-
+    list = read_json('links')
     if link == 'all':
         for x in list:
             webbrowser.open(list[x])
@@ -230,30 +220,30 @@ def openlink(c, link):
     webbrowser.open(list[link])
     return
 
-
 @task(pre=[pathcheck])
 def addlink(c):
+    old_links = read_json('links')
     print('Hoe zal de nieuwe link gaan heten?')
     linkname = input()
+    if linkname in old_links:
+        print('Deze naam bestaat al.')
+        return
     print('vul nu de link in waar die je heen moet sturen')
     link = input()
     new_link = {linkname: link,}
-    with open('.jsons/links.json', 'r') as infile:
-        old_links = json.load(infile)
     links = old_links | new_link
-    with open('.jsons/links.json', 'w') as output:
-        json.dump(links, output)
+    write_json('links', links)
 
 @task(pre=[pathcheck])
 def deletelink(c):
+    links = read_json('links')
+    for x in links:
+        print(x)
     print('Welke link wil jij verwijderen?')
     linkname = input()
-    with open('.jsons/links.json', 'r') as infile:
-        links = json.load(infile)
     if linkname not in links:
         print('Naam niet gevonden :(')
         return
     del links[linkname]
-    with open('.jsons/links.json', 'w') as outfile:
-        json.dump(links, outfile)
+    write_json('links', links)
     print(str(linkname) + " is verwijderd")
