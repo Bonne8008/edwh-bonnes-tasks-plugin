@@ -7,7 +7,7 @@ from pathlib import Path
 
 @task()
 def pathcheck(c):
-    jsons_path = Path('jsons')
+    jsons_path = Path('.jsons')
     jsons = ['links.json', 'tasks.json']
     if not jsons_path.is_dir():
         jsons_path.mkdir()
@@ -62,9 +62,9 @@ def starplatinum(c):
 
 @task(pre=[pathcheck])
 def stagetime(c):
-    with open('jsons/dates.json', 'r') as file:
+    with open('.jsons/dates.json', 'r') as file:
         date_times = json.load(file)
-    with open('jsons/tasks.json', 'r') as file:
+    with open('.jsons/tasks.json', 'r') as file:
         tasks = json.load(file)
 
     start_str = date_times['start']
@@ -130,7 +130,7 @@ def stagetime(c):
 
 @task(pre=[pathcheck])
 def changedate(c):
-    with open('jsons/dates.json', 'r') as infile:
+    with open('.jsons/dates.json', 'r') as infile:
         dates = json.load(infile)
     print('Wil je de start of einddatum editen? (start of end)')
     name = input()
@@ -140,7 +140,7 @@ def changedate(c):
     print('Ok, geef nu je nieuwe datum aan. (voorbeeld: 2024-09-02-10)')
     time = input()
     dates[name] = time
-    with open('jsons/dates.json', 'w') as outfile:
+    with open('.jsons/dates.json', 'w') as outfile:
         json.dump(dates, outfile)
     print(str(name) + ' verranderd, er is geen check of het een ok datum is dus als die nu kapot is is dat jouw schuld :)')
 
@@ -153,16 +153,16 @@ def addtask(c):
     new_task = {
         taskname: {"info": task_info, "done": False},
     }
-    with open('jsons/tasks.json', 'r') as infile:
+    with open('.jsons/tasks.json', 'r') as infile:
         old_tasks = json.load(infile)
     tasks = old_tasks | new_task
-    with open('jsons/tasks.json', 'w') as output:
+    with open('.jsons/tasks.json', 'w') as output:
         json.dump(tasks, output)
 
 @task(pre=[pathcheck])
 def showtasks(c):
     undfinished_tasks = []
-    with open('jsons/tasks.json', 'r') as infile:
+    with open('.jsons/tasks.json', 'r') as infile:
         tasks = json.load(infile)
     for x in tasks:
         if not tasks[x]['done']:
@@ -174,7 +174,7 @@ def showtasks(c):
 
 @task(pre=[pathcheck])
 def finishtask(c):
-    with open('jsons/tasks.json', 'r') as infile:
+    with open('.jsons/tasks.json', 'r') as infile:
         tasks = json.load(infile)
     for x in tasks:
         print(x)
@@ -186,14 +186,14 @@ def finishtask(c):
         return
     tasks[taskname]['done'] = not tasks[taskname]['done']
 
-    with open('jsons/tasks.json', 'w') as outfile:
+    with open('.jsons/tasks.json', 'w') as outfile:
         json.dump(tasks, outfile)
 
     print(str(taskname) + ' is nu ' + str(tasks[taskname]['done']))
 
 @task(pre=[pathcheck])
 def removetask(c):
-    with open('jsons/tasks.json', 'r') as infile:
+    with open('.jsons/tasks.json', 'r') as infile:
         tasks = json.load(infile)
     for x in tasks:
         print(x)
@@ -203,7 +203,7 @@ def removetask(c):
         print('Naam niet gevonden :(')
         return
     del tasks[taskname]
-    with open('jsons/tasks.json', 'w') as outfile:
+    with open('.jsons/tasks.json', 'w') as outfile:
         json.dump(tasks, outfile)
     print(str(taskname) + " is verwijderd")
 
@@ -214,7 +214,7 @@ def yell(c):
 @task(name='open', pre=[pathcheck])
 def openlink(c, link):
 
-    with open('jsons/links.json', 'r') as infile:
+    with open('.jsons/links.json', 'r') as infile:
         list = json.load(infile)
 
     if link == 'all':
@@ -238,22 +238,22 @@ def addlink(c):
     print('vul nu de link in waar die je heen moet sturen')
     link = input()
     new_link = {linkname: link,}
-    with open('jsons/links.json', 'r') as infile:
+    with open('.jsons/links.json', 'r') as infile:
         old_links = json.load(infile)
     links = old_links | new_link
-    with open('jsons/links.json', 'w') as output:
+    with open('.jsons/links.json', 'w') as output:
         json.dump(links, output)
 
 @task(pre=[pathcheck])
 def deletelink(c):
     print('Welke link wil jij verwijderen?')
     linkname = input()
-    with open('jsons/links.json', 'r') as infile:
+    with open('.jsons/links.json', 'r') as infile:
         links = json.load(infile)
     if linkname not in links:
         print('Naam niet gevonden :(')
         return
     del links[linkname]
-    with open('jsons/links.json', 'w') as outfile:
+    with open('.jsons/links.json', 'w') as outfile:
         json.dump(links, outfile)
     print(str(linkname) + " is verwijderd")
