@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.7.1 (2024-09-20)
+
+### Fix
+
+* Added some git stuff ([`d3fbd50`](https://github.com/Bonne8008/edwh-bonnes-tasks-plugin/commit/d3fbd50ab262d14284ef4d3324f206f443775a0e))
+
 ## v0.7.0 (2024-09-20)
 
 ### Feature
