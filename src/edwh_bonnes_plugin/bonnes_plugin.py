@@ -60,7 +60,7 @@ def lock_screen():
     os.system("gnome-screensaver-command -l")
 
 @task()
-def takescreen(c):
+def funni(c):
     from pynput import keyboard
     import tkinter as tk
     from PIL import Image, ImageTk, ImageGrab
@@ -104,22 +104,15 @@ def takescreen(c):
         os.system("cinnamon-screensaver-command --lock")
         return
 
-
-
     def check_bg():
         global scary_check
         if not background.winfo_exists():
-            print("The window has been closed.")
             scary()
-        elif background.focus_get() == background:
-            print("The window is in the foreground and accepting input.")
-        else:
-            print("The window is open but not in the foreground.")
+        elif not background.focus_get() == background:
             if scary_check:
                 background.destroy()
                 scary()
             else:
-                # global scary_check
                 scary_check = not scary_check
 
 
@@ -135,7 +128,7 @@ def takescreen(c):
 
     def external_check():
         check_bg()
-        background.after(10000, external_check)
+        background.after(2000, external_check)
 
     external_check()
     background.mainloop()
