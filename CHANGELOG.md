@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.7.0 (2024-09-20)
+
+### Feature
+
+* Added a lockscreen hehe ([`f0b1f1e`](https://github.com/Bonne8008/edwh-bonnes-tasks-plugin/commit/f0b1f1e541574af6e54df3f3f841c85df0c48487))
+
 ## v0.6.8 (2024-09-18)
 
 ### Fix
