@@ -135,7 +135,7 @@ def takescreen(c):
 
     def external_check():
         check_bg()
-        background.after(1000, external_check)
+        background.after(10000, external_check)
 
     external_check()
     background.mainloop()
