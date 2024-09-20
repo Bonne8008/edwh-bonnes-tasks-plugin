@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.7.2 (2024-09-20)
+
+### Fix
+
+* Added a longer timer ([`2753070`](https://github.com/Bonne8008/edwh-bonnes-tasks-plugin/commit/2753070c1787d8d9714e9f2b2e69202746eaa00e))
+
 ## v0.7.1 (2024-09-20)
 
 ### Fix
