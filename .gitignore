@@ -4,5 +4,5 @@ venv*
 dist/
 build/
 .env
-.jsons/
+.bonnes-jsons/
 test/

@@ -1,13 +1,17 @@
+import time
 from random import randint
 import datetime
 from invoke import task
 import webbrowser
 import json
 from pathlib import Path
+import os
+
+scary_check = False
 
 @task()
 def pathcheck(c):
-    jsons_path = Path('.jsons')
+    jsons_path = Path('.bonnes-jsons')
     jsons = ['links.json', 'tasks.json']
     if not jsons_path.is_dir():
         jsons_path.mkdir()
@@ -19,15 +23,13 @@ def pathcheck(c):
     if not true_dates.is_file():
         true_dates.write_text('{"start": "", "end": ""}')
 
-
 def read_json(json_name):
-    with open(f'.jsons/{json_name}.json', 'r') as file:
+    with open(f'.bonnes-jsons/{json_name}.json', 'r') as file:
         output = json.load(file)
         return output
 
-
 def write_json(json_name, infile):
-    with open(f'.jsons/{json_name}.json', 'w') as outfile:
+    with open(f'.bonnes-jsons/{json_name}.json', 'w') as outfile:
         json.dump(infile, outfile)
 
 def ora(delay):
@@ -37,22 +39,106 @@ def ora(delay):
     root.title("Image Display")
     fists = []
 
-    # for x in range(1):
-    image = Image.open("assets/star_platinum_fist.png")
+    # for x in range(2):
+    image = Image.open(".bonnes-assets/star_platinum_fist.png")
     image = image.resize((300, 300))  # Adjust size as needed
     photo = ImageTk.PhotoImage(image)
     label = tk.Label(root, image=photo)
     root.geometry(f"{image.width}x{image.height}+{randint(0, 2000)}+{randint(0, 2000)}")
     fists.append(label)
-
     fists[0].pack()
     fists[0].after(delay, root.destroy)
+
+
+
     # time.sleep(2)
     # fists[1].pack()
     # fists[1].after(delay, root.destroy)
     root.mainloop()
 
+def lock_screen():
+    os.system("gnome-screensaver-command -l")
 
+@task()
+def takescreen(c):
+    from pynput import keyboard
+    import tkinter as tk
+    from PIL import Image, ImageTk, ImageGrab
+    screenshot = ImageGrab.grab()
+    file_count = sum(1 for entry in os.scandir('.bonnes-assets/screenshots') if entry.is_file())
+
+    assets = [f".bonnes-assets/screenshots/screenshot{file_count}.png", '.bonnes-assets/image.jpg']
+    image_path = assets[0]
+    screenshot.save(image_path)
+
+    def close_window(event):
+        background.quit()
+
+    def scary():
+        root = tk.Tk()
+        root.attributes('-fullscreen', True)
+
+        root.window = tk.Toplevel
+        image = Image.open(assets[1])
+
+        def update_image(event):
+            # Verkrijg de huidige afmetingen van het venster
+            width = event.width
+            height = event.height
+
+            # Schaal de afbeelding naar de nieuwe afmetingen
+            resized_image = image.resize((width, height), Image.LANCZOS)
+            photo = ImageTk.PhotoImage(resized_image)
+
+            # Update de label met de nieuwe afbeelding
+            label.config(image=photo)
+            label.image = photo  # Houd een referentie naar de afbeelding
+
+        # photo = ImageTk.PhotoImage(image)
+
+        label = tk.Label(root)
+        label.pack(fill=tk.BOTH, expand=True)
+        root.bind('<Configure>', update_image)
+        label.after(1000, root.destroy)
+        root.mainloop()
+        os.system("cinnamon-screensaver-command --lock")
+        return
+
+
+
+    def check_bg():
+        global scary_check
+        if not background.winfo_exists():
+            print("The window has been closed.")
+            scary()
+        elif background.focus_get() == background:
+            print("The window is in the foreground and accepting input.")
+        else:
+            print("The window is open but not in the foreground.")
+            if scary_check:
+                background.destroy()
+                scary()
+            else:
+                # global scary_check
+                scary_check = not scary_check
+
+
+    background = tk.Tk()
+    background.attributes('-fullscreen', True)
+
+    bg_image = Image.open(image_path)
+    bg_photo = ImageTk.PhotoImage(bg_image)
+
+    bg_label = tk.Label(background, image=bg_photo)
+    bg_label.pack()
+    background.bind('<F7>', close_window)
+
+    def external_check():
+        check_bg()
+        background.after(1000, external_check)
+
+    external_check()
+    background.mainloop()
 
 @task()
 def starplatinum(c):
@@ -60,12 +146,12 @@ def starplatinum(c):
     print("STAR PLATINUM!")
     for x in range(10):
         print('ora')
-        ora(20)
+        ora(150)
 
 @task(pre=[pathcheck])
 def stagetime(c):
     date_times = read_json('dates')
-    with open('.jsons/tasks.json', 'r') as file:
+    with open('.bonnes-jsons/tasks.json', 'r') as file:
         tasks = json.load(file)
 
     start_str = date_times['start']
@@ -126,7 +212,7 @@ def stagetime(c):
 
 @task(pre=[pathcheck])
 def changedate(c):
-    with open('.jsons/dates.json', 'r') as infile:
+    with open('.bonnes-jsons/dates.json', 'r') as infile:
         dates = json.load(infile)
     print('Wil je de start of einddatum editen? (start of end)')
     name = input()
@@ -136,7 +222,7 @@ def changedate(c):
     print('Ok, geef nu je nieuwe datum aan. (voorbeeld: 2024-09-02-10)')
     time = input()
     dates[name] = time
-    with open('.jsons/dates.json', 'w') as outfile:
+    with open('.bonnes-jsons/dates.json', 'w') as outfile:
         json.dump(dates, outfile)
     print(str(name) + ' verranderd, er is geen check of het een ok datum is dus als die nu kapot is is dat jouw schuld :)')
 
