@@ -138,7 +138,7 @@ def starplatinum(c):
     # Call the function to show the image
     print("STAR PLATINUM!")
     for x in range(10):
-        print('ora')
+        print('ORA!')
         ora(150)
 
 @task(pre=[pathcheck])
