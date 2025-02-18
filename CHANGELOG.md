@@ -2,6 +2,13 @@
 
 <!--next-version-placeholder-->
 
+## v0.7.3 (2025-02-18)
+
+### Fix
+
+* Added a couple of small fixes and added tkinter to the dependency list. ([`477df07`](https://github.com/Bonne8008/edwh-bonnes-tasks-plugin/commit/477df078c18571d31fb3ef2c38daa6e79f748862))
+* Changed namessssss ([`61c0b9c`](https://github.com/Bonne8008/edwh-bonnes-tasks-plugin/commit/61c0b9c79cbb94bbfc29c0f986d79675d233d4ea))
+
 ## v0.7.2 (2024-09-20)
 
 ### Fix
