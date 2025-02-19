@@ -133,8 +133,7 @@ def funni(c):
     bg_label = tk.Label(background, image=bg_photo)
     bg_label.pack()
     background.bind('<F7>', close_window)
-    background.bind('<F6>', window_lock)
-    background.bind('<F8>', window_lock)
+    background.bind('<Key>', window_lock)
 
     def external_check():
         check_bg()
@@ -142,6 +141,19 @@ def funni(c):
 
     external_check()
     background.mainloop()
+
+@task()
+def removescreenshots(c):
+    folder_path = ".bonnes-assets/screenshots"
+    files = os.listdir(folder_path)
+
+    for file in files:
+        if file.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.bmp')):
+            file_path = os.path.join(folder_path, file)
+            os.remove(file_path)
+
+    print("All screenshots have been removed from the folder.")
+
 
 @task()
 def starplatinum(c):
