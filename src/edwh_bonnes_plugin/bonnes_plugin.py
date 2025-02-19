@@ -152,7 +152,7 @@ def removescreenshots(c):
             file_path = os.path.join(folder_path, file)
             os.remove(file_path)
 
-    print("All screenshots have been removed from the folder.")
+    print(f"All screenshots have been removed from the folder: {folder_path}")
 
 
 @task()
