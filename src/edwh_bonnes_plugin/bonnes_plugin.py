@@ -8,6 +8,7 @@ from pathlib import Path
 import os
 
 scary_check = False
+canclose = True
 
 @task()
 def pathcheck(c):
@@ -67,12 +68,19 @@ def funni(c):
     screenshot = ImageGrab.grab()
     file_count = sum(1 for entry in os.scandir('.bonnes-assets/screenshots') if entry.is_file())
 
+
+
     assets = [f".bonnes-assets/screenshots/screenshot{file_count}.png", '.bonnes-assets/image.jpg']
     image_path = assets[0]
     screenshot.save(image_path)
 
     def close_window(event):
-        background.quit()
+        global canclose
+        if canclose:
+            background.quit()
+    def window_lock(event):
+        global canclose
+        canclose = False
 
     def scary():
         root = tk.Tk()
@@ -125,6 +133,8 @@ def funni(c):
     bg_label = tk.Label(background, image=bg_photo)
     bg_label.pack()
     background.bind('<F7>', close_window)
+    background.bind('<F6>', window_lock)
+    background.bind('<F8>', window_lock)
 
     def external_check():
         check_bg()
