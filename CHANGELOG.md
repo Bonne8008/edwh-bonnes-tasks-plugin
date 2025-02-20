@@ -2,6 +2,17 @@
 
 <!--next-version-placeholder-->
 
+## v1.0.0 (2025-02-20)
+
+### Feature
+
+* Added a command that removes all screenshots in the screenshots folder, as they're not generally used outside of the funni. ([`f39e61d`](https://github.com/Bonne8008/edwh-bonnes-tasks-plugin/commit/f39e61dbb8226534196a4d48f13f5a04f37eebc2))
+
+### Fix
+
+* Instead of only f6 or f8, it now make f7 unusable if you press any other key in the before it. ([`6334ad8`](https://github.com/Bonne8008/edwh-bonnes-tasks-plugin/commit/6334ad8761e68d41b1624d5bd90a68e4d058b18c))
+* Made it so when f6 or f8 are clicked, f7 no longer works. This will hopefully prevent keyboard mashing to unlock. ([`b3a1b24`](https://github.com/Bonne8008/edwh-bonnes-tasks-plugin/commit/b3a1b242cf2faa4576f6f0c61fcf8abbeb7c7a3b))
+
 ## v0.7.4 (2025-02-18)
 
 
