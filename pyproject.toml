@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "edwh-bonne-plugin"
+name = "edwh-bonnes-plugin"
 dynamic = ["version"]
 description = 'The greatest project to be created from the edwh package.'
 readme = "README.md"
@@ -172,3 +172,5 @@ exclude_lines = [
     "if __name__ == .__main__.:",
     "if TYPE_CHECKING:",
 ]
+
+packages = ["src/edwh_bonnes"]
