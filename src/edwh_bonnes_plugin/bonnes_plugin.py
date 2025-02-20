@@ -8,7 +8,7 @@ from pathlib import Path
 import os
 
 scary_check = False
-canclose = True
+canclose = 0
 
 @task()
 def pathcheck(c):
@@ -76,11 +76,14 @@ def funni(c):
 
     def close_window(event):
         global canclose
-        if canclose:
+        if canclose == 0:
             background.quit()
     def window_lock(event):
+        print(f"input detected at {datetime.datetime.now()}")
         global canclose
-        canclose = False
+        if canclose >= 30:
+            scary()
+        canclose =+ 1
 
     def scary():
         root = tk.Tk()
