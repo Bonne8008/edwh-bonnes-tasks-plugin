@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v5.0.0 (2025-02-20)
+
+### Fix
+
+*  changed the name bonnes to bonne ([`b451cf4`](https://github.com/Bonne8008/edwh-bonnes-tasks-plugin/commit/b451cf4cfb6fb71c6eac4cd997c552a7fc50505d))
+
 ## v4.0.0 (2025-02-20)
 
 
