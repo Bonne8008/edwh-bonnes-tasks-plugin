@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "edwh-bonnes-plugin"
+name = "edwh-bonne-plugin"
 dynamic = ["version"]
 description = 'The greatest project to be created from the edwh package.'
 readme = "README.md"
