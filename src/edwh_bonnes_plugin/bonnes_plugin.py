@@ -67,10 +67,11 @@ def funni(c):
     import tkinter as tk
     from PIL import Image, ImageTk, ImageGrab
     screenshot = ImageGrab.grab()
+
+    if not asset_root + '/screenshots'.is_dir():
+        asset_root + '/screenshots'.mkdir()
+
     file_count = sum(1 for entry in os.scandir(asset_root + '/screenshots') if entry.is_file())
-
-
-
     assets = [f"{asset_root}/screenshots/screenshot{file_count}.png", asset_root + '/image.jpg']
     image_path = assets[0]
     screenshot.save(image_path)
@@ -147,7 +148,9 @@ def funni(c):
 def removescreenshots(c):
     folder_path = asset_root + "/screenshots"
     files = os.listdir(folder_path)
-
+    if not folder_path.is_dir:
+        print("No screenshots have been taken yet.")
+        return
     for file in files:
         if file.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.bmp')):
             file_path = os.path.join(folder_path, file)
