@@ -9,6 +9,7 @@ import os
 
 scary_check = False
 canclose = True
+asset_root = os.path.join(os.path.dirname(__file__), ".bonnes-assets")
 
 @task()
 def pathcheck(c):
@@ -41,7 +42,7 @@ def ora(delay):
     fists = []
 
     # for x in range(2):
-    image = Image.open(".bonnes-assets/star_platinum_fist.png")
+    image = Image.open(asset_root + "/star_platinum_fist.png")
     image = image.resize((300, 300))  # Adjust size as needed
     photo = ImageTk.PhotoImage(image)
     label = tk.Label(root, image=photo)
@@ -66,11 +67,11 @@ def funni(c):
     import tkinter as tk
     from PIL import Image, ImageTk, ImageGrab
     screenshot = ImageGrab.grab()
-    file_count = sum(1 for entry in os.scandir('.bonnes-assets/screenshots') if entry.is_file())
+    file_count = sum(1 for entry in os.scandir(asset_root + '/screenshots') if entry.is_file())
 
 
 
-    assets = [f".bonnes-assets/screenshots/screenshot{file_count}.png", '.bonnes-assets/image.jpg']
+    assets = [f"{asset_root}/screenshots/screenshot{file_count}.png", asset_root + '/image.jpg']
     image_path = assets[0]
     screenshot.save(image_path)
 
@@ -144,7 +145,7 @@ def funni(c):
 
 @task()
 def removescreenshots(c):
-    folder_path = ".bonnes-assets/screenshots"
+    folder_path = asset_root + "/screenshots"
     files = os.listdir(folder_path)
 
     for file in files:

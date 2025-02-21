@@ -173,3 +173,13 @@ exclude_lines = [
 ]
 
 packages = ["src/edwh_bonnes"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/edwh_bonnes_plugin"]
+
+[tool.hatch.build]
+artifacts = [
+    "src/edwh_bonnes_plugin/.bonnes-assets/*"
+]
+
+
