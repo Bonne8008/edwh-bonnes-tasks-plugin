@@ -62,7 +62,7 @@ def lock_screen():
     os.system("gnome-screensaver-command -l")
 
 @task(pre=[pathcheck])
-def yippee(c, amount: int = 1, delay: int = 1, volume: float = 1):
+def yippee(c, amount: int = 1, delay: float = 1, volume: float = 1):
     import pygame
     pygame.mixer.init()
     pygame.mixer.music.load(asset_root + "/audio/Sena Yippee.ogg")
