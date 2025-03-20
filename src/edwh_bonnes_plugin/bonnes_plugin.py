@@ -61,6 +61,16 @@ def ora(delay):
 def lock_screen():
     os.system("gnome-screensaver-command -l")
 
+@task(pre=[pathcheck])
+def yippee(c, amount: int = 1, delay: int = 1, volume: float = 1):
+    import pygame
+    pygame.mixer.init()
+    pygame.mixer.music.load(asset_root + "/audio/Sena Yippee.ogg")
+    pygame.mixer.music.set_volume(volume)
+    for x in range(amount):
+        pygame.mixer.music.play()
+        time.sleep(delay)
+
 @task()
 def funni(c):
     from pynput import keyboard
@@ -307,7 +317,7 @@ def removetask(c):
 
 @task(pre=[pathcheck])
 def yell(c):
-    print("AAAAAAAaaaafdffAHHH")
+    print("AAAAAAAaaaafdffAHHH 3")
 
 @task(name='open', pre=[pathcheck])
 def openlink(c, link):
