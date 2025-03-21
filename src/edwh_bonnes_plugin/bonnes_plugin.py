@@ -6,6 +6,7 @@ import webbrowser
 import json
 from pathlib import Path
 import os
+import pygame
 
 scary_check = False
 canclose = True
@@ -61,15 +62,31 @@ def ora(delay):
 def lock_screen():
     os.system("gnome-screensaver-command -l")
 
+
+def load_sound(path:str = "/audio/Sena Yippee.ogg", volume: float = 1):
+    pygame.mixer.init()
+    pygame.mixer.music.load(asset_root + path)
+    pygame.mixer.music.set_volume(volume)
+
+
 @task(pre=[pathcheck])
 def yippee(c, amount: int = 1, delay: float = 1, volume: float = 1):
-    import pygame
-    pygame.mixer.init()
-    pygame.mixer.music.load(asset_root + "/audio/Sena Yippee.ogg")
-    pygame.mixer.music.set_volume(volume)
+    load_sound("/audio/Sena Yippee.ogg", volume)
     for x in range(amount):
         pygame.mixer.music.play()
         time.sleep(delay)
+
+@task(pre=[pathcheck])
+def yippee_rand(c, delay: float = 1, volume: float = 1, chance:int = 1, len:int = 60):
+    load_sound("/audio/Sena Yippee.ogg", volume)
+    print("This will be an infinite while loop, remember to press Ctrl C to quit out of it.")
+    while True:
+        rand = randint(0, 100)
+        if rand <= chance:
+            pygame.mixer.music.play()
+            print("Yippee!!")
+            time.sleep(delay)
+        time.sleep(len)
 
 @task()
 def funni(c):
