@@ -29,6 +29,7 @@ dependencies = [
     "invoke>=2.2.0",
     "pillow",
     "pynput>=1.7.7",
+    "pygame>=2.6.1",
 ]
 
 [project.optional-dependencies]
@@ -88,7 +89,6 @@ dependencies = [
     "black>=23.1.0",
     "mypy>=1.0.0",
     "ruff>=0.0.243",
-    "pygame>=2.6.1",
 ]
 [tool.hatch.envs.lint.scripts]
 typing = "mypy --install-types --non-interactive {args:src/edwh_bonnes_plugin tests}"
