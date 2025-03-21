@@ -1,3 +1,5 @@
+import functools
+import io
 import time
 from random import randint
 import datetime
@@ -6,7 +8,15 @@ import webbrowser
 import json
 from pathlib import Path
 import os
+import functools
+
+import sys
+import io
+
+prev = sys.stdout, sys.stderr
+sys.stdout = sys.stderr = io.StringIO()
 import pygame
+sys.stdout, sys.stderr = prev
 
 scary_check = False
 canclose = True
@@ -68,13 +78,13 @@ def load_sound(path:str = "/audio/Sena Yippee.ogg", volume: float = 1):
     pygame.mixer.music.load(asset_root + path)
     pygame.mixer.music.set_volume(volume)
 
-
 @task(pre=[pathcheck])
 def yippee(c, amount: int = 1, delay: float = 1, volume: float = 1):
     load_sound("/audio/Sena Yippee.ogg", volume)
     for x in range(amount):
         pygame.mixer.music.play()
         time.sleep(delay)
+
 
 @task(pre=[pathcheck])
 def yippee_rand(c, delay: float = 1, volume: float = 1, chance:int = 1, len:int = 60):
